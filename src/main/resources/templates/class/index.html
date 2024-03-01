@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .footer{
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: lightgray;
+      opacity: 90%
+      color: white;
+      text-align: center;
+    }
+</style>
+
+<header th:insert="~{fragments/header :: header}"></header>
+<body>
+<div class="m-4">
+    <h1 class ="cl">Student List</h1>
+    <hr>
+    <a th:href="@{/class/addNew}" class="btn btn-primary"role="button">Add new</a>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead class="table table-dark">
+        <th>No</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+        </thead>
+        <tbody>
+        <tr th:each="class:${classList}">
+            <td th:text="${class.id}"/>
+            <td th:text="${class.name}"/>
+            <td th:text="${class.number_member}"/>
+            <td>
+                <a class ="btn btn-secondary" th:href="@{/student/formUpdate(studentId=${student.id})}">Edit</a>
+                <a class ="btn btn-secondary" th:href="@{/student/delete(studentId=${student.id})}"
+                   onclick="if (!(confirm('Are you sure you want to delete this student?'))) return false" >Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Button trigger modal -->
+</body>
+<footer class="footer" th:insert="~{fragments/footer :: footer}"></footer>
+</html>
