@@ -39,15 +39,15 @@ public class SecurityConfiguration {
     public DefaultSecurityFilterChain http(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeHttpRequests(configuration ->{
            configuration.requestMatchers("/pricing/**")
-                   .hasRole("ADMIN,OPERATOR")
+                   .hasRole("ADMIN")
                    .anyRequest()
                    .authenticated();
         }).formLogin(
-                Customizer.withDefaults()
-//                form->form.loginPage("/loginPage123")
-//                        .loginProcessingUrl("/signin")
-//                        .defaultSuccessUrl("/list",true)
-//                        .permitAll()
+//                Customizer.withDefaults()
+                form->form.loginPage("/loginPage123")
+                        .loginProcessingUrl("/signin")
+                        .defaultSuccessUrl("/list",true)
+                        .permitAll()
         );
 //        ).exceptionHandling(
 //                configurer -> configurer.accessDeniedPage("/exception/access-denied")
